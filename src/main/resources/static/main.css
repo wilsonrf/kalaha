@@ -1,0 +1,9 @@
+.player-board td {
+	width: 12.5%;
+}
+
+.material-icons.md-48 { font-size: 48px; }
+
+.pit-hover {
+	background-color: rgba(255, 0, 0, 0.5);
+}

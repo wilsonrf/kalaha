@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="en">
+<head>
+    <title>Kalaha</title>
+    <div th:replace="./base/header :: meta"/>
+    <div th:replace="./base/header :: header-css"/>
+</head>
+<body>
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-sm-6">
+            <div class="card rounded-0">
+                <div class="card-header">
+                    <h3 class="mb-0">Sign Up</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/signup.html" th:object="${signupFormData}" method="POST" enctype="utf8">
+                        <div class="form-group">
+                            <label for="first_name" class="bmd-label-floating">First Name</label>
+                            <input th:classappend="${#fields.hasErrors('firstName') ? 'is-invalid' : 'is-valid'}" type="text" class="form-control" id="first_name" th:field="*{firstName}"/>
+                            <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name" class="bmd-label-floating">Last Name</label>
+                            <input th:classappend="${#fields.hasErrors('lastName') ? 'is-invalid' : 'is-valid'}" type="text" class="form-control" id="last_name" th:field="*{lastName}"/>
+                            <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                            <label for="email" class="bmd-label-floating">Email</label>
+                            <input th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : 'is-valid'}" type="text" class="form-control" id="email" th:field="*{email}"/>
+                            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                            <div class="input-group">
+                                <label for="password" class="bmd-label">Password</label>
+                                <input th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : 'is-valid'}" type="password" class="form-control" id="password" th:field="*{password}"/>
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-secondary show-password" type="button">
+                                        <i class="material-icons">visibility</i>
+                                    </button>
+                                </div>
+                                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="./base/footer :: footer-js"/>
+<script>
+
+    $(".show-password").on('click',function() {
+        var $pwd = $("#password");
+        if ($pwd.attr('type') === 'password') {
+            $pwd.attr('type', 'text');
+        } else {
+            $pwd.attr('type', 'password');
+        }
+    });
+
+</script>
+</body>
+<script th:if="${registered}" th:inline="javascript">
+    /*<![CDATA[*/
+    $(function() {
+    var options = {
+        content: "This user is already registered!",
+        style: "text-center",
+        timeout: 10000
+    }
+    $.snackbar(options);
+    });
+     /*]]>*/
+</script>
+</html>
