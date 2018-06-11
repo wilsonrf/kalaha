@@ -46,7 +46,7 @@ public class GamesService {
 			Optional<Game> optional = gamesRepository.findById(new ObjectId(gameId));
 			Game game = optional
 					.filter(g -> !g.isFinished())
-					.orElseThrow(() -> new InvalidGameExeption("The game is already finished"));
+					.orElseThrow(() -> new InvalidGameException("The game is already finished"));
 			
 			// check if you're not the first player
 			if (!player.equalsIgnoreCase(game.getFirstPlayer())) {
@@ -58,7 +58,7 @@ public class GamesService {
 					game.start();
 				} else if (!player.equalsIgnoreCase(game.getSecondPlayer())) {
 					// there is a second player, and it's not you
-					throw new InvalidGameExeption("You can't join this game.");
+					throw new InvalidGameException("You can't join this game.");
 				}
 				
 				gamesRepository.save(game);
@@ -69,7 +69,7 @@ public class GamesService {
 			
 			return game;
 		} else {
-			throw new InvalidGameExeption("This game is not valid");
+			throw new InvalidGameException("This game is not valid");
 		}
 	}
 	
@@ -82,7 +82,7 @@ public class GamesService {
 			Optional<Game> optional = gamesRepository.findById(new ObjectId(gameId));
 			game = optional
 					.filter(g -> !g.isFinished())
-					.orElseThrow(() -> new InvalidGameExeption("The game is already finished"));
+					.orElseThrow(() -> new InvalidGameException("The game is already finished"));
 			
 			int pitValue = game.getPitValueById(pit, player);
 			

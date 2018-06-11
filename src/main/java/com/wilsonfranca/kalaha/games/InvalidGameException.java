@@ -1,8 +1,8 @@
 package com.wilsonfranca.kalaha.games;
 
-public class InvalidGameExeption extends RuntimeException{
+public class InvalidGameException extends RuntimeException{
 
-	public InvalidGameExeption(String string) {
+	public InvalidGameException(String string) {
 		super(string);
 	}
 

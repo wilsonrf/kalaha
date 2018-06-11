@@ -16,7 +16,7 @@
 					<tr class="text-center">
 						<td colspan="8">Player 1 <p th:text="${game.getFirstPlayer()}"
 							th:class="${game.getFirstPlayer()}? 'badge badge-primary' :'badge badge-secondary'"/> 
-							<span th:text="${#strings.equals(game.getRound(), game.getFirstPlayer())} ? 'your turn' : 'not your turn'" th:class="${#strings.equals(game.getRound(), game.getFirstPlayer())} ? 'badge badge-success' :'badge badge-danger'"/>
+							<span th:if="${not game.isFinished()}" th:text="${#strings.equals(game.getRound(), game.getFirstPlayer())} ? 'your turn' : 'not your turn'" th:class="${#strings.equals(game.getRound(), game.getFirstPlayer())} ? 'badge badge-success' :'badge badge-danger'"/>
 						</td>
 					</tr>
 				</thead>

@@ -18,17 +18,18 @@
             <img src="" class="placeholder mr-2" options="size=32x32&bgcolor=#007bff&text=">
             <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                 <div class="d-flex justify-content-between align-items-center w-100">
-                    <strong class="strong-gray-dark" th:text="${game.getFirstPlayer()}"/>
+                    <span>Created by: <strong class="strong-gray-dark" th:text="${game.getFirstPlayer()}"/> </span>
+                    
                     <a href="join-game.html" 
-                    	th:if="${#strings.isEmpty(game.getSecondPlayer())}"
+                    	th:if="${#strings.isEmpty(game.getSecondPlayer()) and not #strings.equalsIgnoreCase(game.getFirstPlayer(), #authentication.name)}"
                     	th:href="@{join-game.html(game=${game.getId()},player=${#authentication.name})}">Join</a>
                     	
-                    	<a href="join-game.html" 
-                    	th:if="${#strings.equalsIgnoreCase(game.getSecondPlayer(), #authentication.name)}"
+                    	<a href="join-game.html"
+                    	th:if="${#strings.equalsIgnoreCase(game.getSecondPlayer(), #authentication.name) and not game.isFinished()}"
                     	th:href="@{join-game.html(game=${game.getId()},player=${#authentication.name})}">Continue</a>
                     	
                     	<a href="join-game.html" 
-                    	th:if="${#strings.equalsIgnoreCase(game.getFirstPlayer(), #authentication.name)}"
+                    	th:if="${#strings.equalsIgnoreCase(game.getFirstPlayer(), #authentication.name) and not game.isFinished()}"
                     	th:href="@{join-game.html(game=${game.getId()},player=${#authentication.name})}">Continue</a>
                     	
                 </div>

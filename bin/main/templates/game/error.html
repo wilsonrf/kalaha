@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="en">
+<head>
+    <title>Currency Converter</title>
+    <div th:replace="./base/header :: meta"/>
+    <div th:replace="./base/header :: header-css"/>
+</head>
+<body>
+<div th:replace="./base/header :: navbar"/>
+	<main class="container">
+		 <div class="my-3 p-3 rounded box-shadow bg-white">
+		 	<i class="material-icons md-48 pit_16">error</i> <span>There is something wron with your game. Please try a new one.</span>
+		 </div>
+	</main>
+<div th:replace="./base/footer :: footer-js"/>
+</body>
+</html>
